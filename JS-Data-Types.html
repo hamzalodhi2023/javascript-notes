@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Data Types</title>
+  </head>
+  <style>
+    * {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 50%;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+  <body>
+    <p>
+      JavaScript provides different data types to hold different types of
+      values. There are two types of data types in JavaScript.
+    </p>
+    <ol>
+      <li>Primitive data type</li>
+      <li>Non-primitive (reference) data type</li>
+    </ol>
+    <p>
+      JavaScript is a dynamic type language, means you don't need to specify
+      type of the variable because it is dynamically used by JavaScript engine.
+      You need to use var here to specify the data type. It can hold any type of
+      values such as numbers, strings etc. For example:
+    </p>
+    <ol>
+      <li>var a=40; &nbsp;&nbsp;&nbsp;&nbsp;holding number</li>
+      <li>var b="Hamza"; &nbsp;&nbsp;&nbsp;&nbsp;holding string</li>
+    </ol>
+    <hr />
+    <h1>JavaScript primitive data types</h1>
+    <p>
+      There are five types of primitive data types in JavaScript. They are as
+      follows:
+    </p>
+    <table>
+      <tr>
+        <th>Data Type</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>String</td>
+        <td>represents sequence of characters e.g. "hello"</td>
+      </tr>
+
+      <tr>
+        <td>Number</td>
+        <td>represents numeric values e.g. 100</td>
+      </tr>
+      <tr>
+        <td>Boolean</td>
+        <td>represents boolean value either false or true</td>
+      </tr>
+      <tr>
+        <td>Undefined</td>
+        <td>represents undefined value</td>
+      </tr>
+      <tr>
+        <td>Null</td>
+        <td>represents null i.e. no value at all</td>
+      </tr>
+    </table>
+    <hr />
+    <h1>JavaScript non-primitive data types</h1>
+    <p>The non-primitive data types are as follows:</p>
+    <table>
+      <tr>
+        <th>Data Type</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>Object</td>
+        <td>represents instance through which we can access members</td>
+      </tr>
+
+      <tr>
+        <td>Array</td>
+        <td>represents group of similar values</td>
+      </tr>
+      <tr>
+        <td>RegExp</td>
+        <td>represents regular expression</td>
+      </tr>
+    </table>
+    <hr />
+    <h3>Example:</h3>
+  </body>
+  <script>
+    let a = "Hamza Khan Lodhi";
+    document.write(a + " " + typeof a + "<br><br>");
+
+    let b = 56964;
+    document.write(b + " " + typeof b + "<br><br>");
+
+    let c = true;
+    document.write(c + " " + typeof c + "<br><br>");
+
+    let d = ["html", "css", "js"];
+    document.write(d + " " + typeof d + "<br><br>");
+
+    let e = { first: "hamza", second: "umar" };
+    document.write(e + " " + typeof e + "<br><br>");
+
+    let f = null;
+    document.write(f + " " + typeof f + "<br><br>");
+
+    let g;
+    document.write(g + " " + typeof g + "<br><br>");
+  </script>
+</html>
