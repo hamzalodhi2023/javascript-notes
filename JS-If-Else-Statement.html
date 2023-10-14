@@ -311,10 +311,10 @@
     let name = prompt("Enter your name");
     let gender = prompt("Enter your gender");
 
-    if ((gender == "male", "Male")) {
-      document.write("Hello Mr. " + name);
+    if (gender.toLowerCase() == "male" || gender.toUpperCase() == "Male") {
+      alert("Hello Mr. " + name);
     } else {
-      document.write("Hello Miss. " + name);
+      alert("Hello Miss. " + name);
     }
   </script>
 </html>
