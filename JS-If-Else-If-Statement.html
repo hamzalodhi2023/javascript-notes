@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS If Else If Statement</title>
+    <style>
+      * {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 70%;
+      }
+
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+
+      code[class*="language-"],
+      pre[class*="language-"] {
+        color: black;
+        background: none;
+        background-color: rgba(0, 0, 0, 0);
+        font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+        font-size: 1em;
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        word-wrap: normal;
+        line-height: 1.5;
+        -moz-tab-size: 4;
+        -o-tab-size: 4;
+        tab-size: 4;
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+      }
+
+      :not(pre) > code[class*="language-"]::after,
+      pre[class*="language-"]::after {
+        right: 0.75em;
+
+        left: auto;
+
+        -webkit-transform: rotate(2deg);
+
+        -moz-transform: rotate(2deg);
+
+        -ms-transform: rotate(2deg);
+
+        -o-transform: rotate(2deg);
+
+        transform: rotate(2deg);
+      }
+      pre[class*="language-"]::before,
+      pre[class*="language-"]::after {
+        content: "";
+
+        z-index: -2;
+
+        display: block;
+
+        position: absolute;
+
+        bottom: 0.75em;
+
+        left: 0.18em;
+
+        width: 40%;
+
+        height: 20%;
+
+        max-height: 13em;
+
+        -webkit-transform: rotate(-2deg);
+
+        -moz-transform: rotate(-2deg);
+
+        -ms-transform: rotate(-2deg);
+
+        -o-transform: rotate(-2deg);
+
+        transform: rotate(-2deg);
+      }
+
+      :not(pre) > code[class*="language-"],
+      pre[class*="language-"] {
+        background-color: #fdfdfd;
+
+        -webkit-box-sizing: border-box;
+
+        -moz-box-sizing: border-box;
+
+        box-sizing: border-box;
+
+        margin-bottom: 1em;
+      }
+      pre[class*="language-"] {
+        position: relative;
+
+        margin: 0.5em 0;
+
+        margin-bottom: 0.5em;
+
+        overflow: visible;
+
+        padding: 0;
+      }
+      code[class*="language-"],
+      pre[class*="language-"] {
+        color: black;
+
+        background: none;
+
+        background-color: rgba(0, 0, 0, 0);
+
+        font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+
+        font-size: 1em;
+
+        text-align: left;
+
+        white-space: pre;
+
+        word-spacing: normal;
+
+        word-break: normal;
+
+        word-wrap: normal;
+
+        line-height: 1.5;
+
+        -moz-tab-size: 4;
+
+        -o-tab-size: 4;
+
+        tab-size: 4;
+
+        -webkit-hyphens: none;
+
+        -moz-hyphens: none;
+
+        -ms-hyphens: none;
+
+        hyphens: none;
+      }
+      pre {
+        display: block;
+
+        font-size: 87.5%;
+
+        color: #212529;
+      }
+      pre {
+        margin-top: 0;
+
+        margin-bottom: 1rem;
+
+        overflow: auto;
+
+        -ms-overflow-style: scrollbar;
+      }
+      code,
+      kbd,
+      pre,
+      samp {
+        font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+          "Courier New", monospace;
+
+        font-size: 1em;
+      }
+
+      pre[class*="language-"] > code {
+        position: relative;
+        border-left: 10px solid #358ccb;
+        box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
+        background-color: #fdfdfd;
+        background-image: linear-gradient(
+          transparent 50%,
+          rgba(69, 142, 209, 0.04) 50%
+        );
+        background-size: 3em 3em;
+        background-origin: content-box;
+        background-attachment: local;
+      }
+
+      code[class*="language"] {
+        max-height: inherit;
+        height: inherit;
+        padding: 0 1em;
+        display: block;
+        overflow: auto;
+      }
+
+      code[class*="language-"],
+      pre[class*="language-"] {
+        color: black;
+        background: none;
+        background-color: rgba(0, 0, 0, 0);
+        background-attachment: scroll;
+        background-image: none;
+        background-size: auto;
+        background-origin: padding-box;
+        font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+        font-size: 1em;
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        word-wrap: normal;
+        line-height: 1.5;
+        -moz-tab-size: 4;
+        -o-tab-size: 4;
+        tab-size: 4;
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+      }
+
+      pre code {
+        font-size: inherit;
+        color: inherit;
+        word-break: normal;
+      }
+
+      code {
+        font-size: 87.5%;
+        color: #e83e8c;
+        word-wrap: break-word;
+      }
+      code,
+      kbd,
+      pre,
+      samp {
+        font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+          "Courier New", monospace;
+        font-size: 1em;
+      }
+      *,
+      ::after,
+      ::before {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>JavaScript If...else if statement</h1>
+    <p>
+      It evaluates the content only if expression is true from several
+      expressions. The signature of JavaScript if else if statement is given
+      below.
+    </p>
+    <img src="images/JavaScript If...else if statement.png" alt="" />
+    <pre
+      class="language-javascript"
+      tabindex="0"
+    ><code class="language-javascript"><span class="token keyword">if</span><span class="token punctuation">(</span>expression1<span class="token punctuation">)</span><span class="token punctuation">{</span>  
+     <span class="token comment">//content to be evaluated if expression1 is true  </span>
+<span class="token punctuation">}</span>  
+<span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>expression2<span class="token punctuation">)</span><span class="token punctuation">{</span>  
+    <span class="token comment">//content to be evaluated if expression2 is true  </span>
+<span class="token punctuation">}</span>  
+<span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>expression3<span class="token punctuation">)</span><span class="token punctuation">{</span>  
+    <span class="token comment">//content to be evaluated if expression3 is true  </span>
+<span class="token punctuation">}</span>  
+<span class="token keyword">else</span><span class="token punctuation">{</span>  
+    <span class="token comment">//content to be evaluated if no expression is true  </span>
+<span class="token punctuation">}</span>  </code></pre>
+    <br /><br />
+    <pre
+      class="language-markup"
+      tabindex="0"
+    ><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>X-UA-Compatible<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>ie=edge<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>JavaScript<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+        <span class="token comment">/* If Else IF Condition */</span>
+        <span class="token keyword">var</span> per <span class="token operator">=</span> <span class="token function">prompt</span><span class="token punctuation">(</span><span class="token string">"Enter your Percentage : "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>per <span class="token operator">&gt;=</span> <span class="token number">80</span> <span class="token operator">&amp;&amp;</span> per <span class="token operator">&lt;=</span> <span class="token number">100</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"You are in Merit."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span>  <span class="token keyword">if</span> <span class="token punctuation">(</span>per <span class="token operator">&gt;=</span> <span class="token number">60</span> <span class="token operator">&amp;&amp;</span> per <span class="token operator">&lt;</span> <span class="token number">80</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"You are in Ist Division."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>per <span class="token operator">&gt;=</span> <span class="token number">45</span> <span class="token operator">&amp;&amp;</span> per <span class="token operator">&lt;</span> <span class="token number">60</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"You are in IIst Division."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>per <span class="token operator">&gt;=</span> <span class="token number">33</span> <span class="token operator">&amp;&amp;</span> per <span class="token operator">&lt;</span> <span class="token number">45</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"You are in IIIst Division."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>per <span class="token operator">&lt;</span> <span class="token number">33</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"You are Fail."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
+            document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"Please Enter Valid Percentage."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>
+    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></code></pre>
+  </body>
+  <script>
+    let friend = prompt("For write a paragraph, Enter your friend name");
+    let gender = prompt("Enter your friend's gender");
+
+    if (gender.toLowerCase() == "male" || gender.toUpperCase() == "Male") {
+      document.write(
+        friend +
+          " is a remarkable friend whose presence in my life has enriched it in countless ways. He possesses a unique blend of qualities that make him truly exceptional. His unwavering loyalty and support are the cornerstones of our friendship, and I am grateful for his reliability." +
+          friend +
+          "'s " +
+          "sense of humor is infectious, and he has an uncanny ability to lift our spirits with a well-timed joke or a witty comment. He is also a dedicated and diligent individual, always striving for excellence in everything he does." +
+          friend +
+          "'s " +
+          "kindness knows no bounds, and he is quick to offer a helping hand to those in need. His love for adventure and exploration has led us to some unforgettable experiences together, creating lasting memories. In " +
+          friend +
+          ", I've found not just a friend but a confidant, an adventurer, and a source of unwavering support, and I cherish every moment of our friendship."
+      );
+    } else if (
+      gender.toLowerCase() == "female" ||
+      gender.toUpperCase() == "Female"
+    ) {
+      document.write(
+        friend +
+          " is a truly exceptional friend, and her presence in my life is a constant source of joy and inspiration. Her boundless kindness and empathy make her a beacon of support during both the brightest and darkest moments." +
+          friend +
+          "'s unwavering loyalty and trustworthiness have created a deep and unbreakable connection between us. She possesses a brilliant mind and a passion for learning that is truly commendable. Her sense of humor is infectious, always bringing laughter and light to any situation. " +
+          friend +
+          "'s genuine interest in the well-being of others extends beyond words, as she's always eager to lend a helping hand or a listening ear. Her adventurous spirit fuels our shared experiences and unforgettable memories. In " +
+          friend +
+          ", I have found a friend who embodies compassion, wisdom, and a zest for life, making every day richer and more meaningful."
+      );
+    } else {
+      alert("Please enter valid input");
+    }
+  </script>
+</html>
