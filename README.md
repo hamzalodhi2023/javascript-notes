@@ -1,4 +1,7 @@
 # JAVASCRIPT NOTES
 
-<h1>AUTHOR: HAMZA KHAN LODHI</h1>
-https://hamzalodhi2023.github.io/java-script-notes/
+## AUTHOR: HAMZA KHAN LODHI
+
+![js notes](images/javascript%20notes.png)
+![home page](images/js%20introduction.png)
+![js variable](images/js%20variable.png)
