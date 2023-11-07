@@ -48,7 +48,8 @@ Submit a pull request to the original repository for review.
 
 Your contributions will help improve this valuable resource for fellow developers.
 
-Contact
-GitHub: hamzalodhi2023
-Email: hamzalodhi2023@gmail.com
+## Contact
+
+GitHub: hamzalodhi2023<br>
+Email: hamzalodhi2023@gmail.com<br><br>
 📦 Thank you for exploring the JavaScript Notes project! Elevate your JavaScript skills and contribute to this open learning platform.
