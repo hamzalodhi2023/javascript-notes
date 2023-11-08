@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Multidimensional Arrays</title>
+    <style>
+      * {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 50%;
+      }
+
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+
+      code[class*="language-"],
+      pre[class*="language-"] {
+        color: black;
+        background: none;
+        background-color: rgba(0, 0, 0, 0);
+        font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+        font-size: 1em;
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        word-wrap: normal;
+        line-height: 1.5;
+        -moz-tab-size: 4;
+        -o-tab-size: 4;
+        tab-size: 4;
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+      }
+
+      :not(pre) > code[class*="language-"]::after,
+      pre[class*="language-"]::after {
+        right: 0.75em;
+
+        left: auto;
+
+        -webkit-transform: rotate(2deg);
+
+        -moz-transform: rotate(2deg);
+
+        -ms-transform: rotate(2deg);
+
+        -o-transform: rotate(2deg);
+
+        transform: rotate(2deg);
+      }
+      pre[class*="language-"]::before,
+      pre[class*="language-"]::after {
+        content: "";
+
+        z-index: -2;
+
+        display: block;
+
+        position: absolute;
+
+        bottom: 0.75em;
+
+        left: 0.18em;
+
+        width: 40%;
+
+        height: 20%;
+
+        max-height: 13em;
+
+        -webkit-transform: rotate(-2deg);
+
+        -moz-transform: rotate(-2deg);
+
+        -ms-transform: rotate(-2deg);
+
+        -o-transform: rotate(-2deg);
+
+        transform: rotate(-2deg);
+      }
+
+      :not(pre) > code[class*="language-"],
+      pre[class*="language-"] {
+        background-color: #fdfdfd;
+
+        -webkit-box-sizing: border-box;
+
+        -moz-box-sizing: border-box;
+
+        box-sizing: border-box;
+
+        margin-bottom: 1em;
+      }
+      pre[class*="language-"] {
+        position: relative;
+
+        margin: 0.5em 0;
+
+        margin-bottom: 0.5em;
+
+        overflow: visible;
+
+        padding: 0;
+      }
+      code[class*="language-"],
+      pre[class*="language-"] {
+        color: black;
+
+        background: none;
+
+        background-color: rgba(0, 0, 0, 0);
+
+        font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+
+        font-size: 1em;
+
+        text-align: left;
+
+        white-space: pre;
+
+        word-spacing: normal;
+
+        word-break: normal;
+
+        word-wrap: normal;
+
+        line-height: 1.5;
+
+        -moz-tab-size: 4;
+
+        -o-tab-size: 4;
+
+        tab-size: 4;
+
+        -webkit-hyphens: none;
+
+        -moz-hyphens: none;
+
+        -ms-hyphens: none;
+
+        hyphens: none;
+      }
+      pre {
+        display: block;
+
+        font-size: 87.5%;
+
+        color: #212529;
+      }
+      pre {
+        margin-top: 0;
+
+        margin-bottom: 1rem;
+
+        overflow: auto;
+
+        -ms-overflow-style: scrollbar;
+      }
+      code,
+      kbd,
+      pre,
+      samp {
+        font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+          "Courier New", monospace;
+
+        font-size: 1em;
+      }
+
+      pre[class*="language-"] > code {
+        position: relative;
+        border-left: 10px solid #358ccb;
+        box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
+        background-color: #fdfdfd;
+        background-image: linear-gradient(
+          transparent 50%,
+          rgba(69, 142, 209, 0.04) 50%
+        );
+        background-size: 3em 3em;
+        background-origin: content-box;
+        background-attachment: local;
+      }
+
+      code[class*="language"] {
+        max-height: inherit;
+        height: inherit;
+        padding: 0 1em;
+        display: block;
+        overflow: auto;
+      }
+
+      code[class*="language-"],
+      pre[class*="language-"] {
+        color: black;
+        background: none;
+        background-color: rgba(0, 0, 0, 0);
+        background-attachment: scroll;
+        background-image: none;
+        background-size: auto;
+        background-origin: padding-box;
+        font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+        font-size: 1em;
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        word-wrap: normal;
+        line-height: 1.5;
+        -moz-tab-size: 4;
+        -o-tab-size: 4;
+        tab-size: 4;
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+      }
+
+      pre code {
+        font-size: inherit;
+        color: inherit;
+        word-break: normal;
+      }
+
+      code {
+        font-size: 87.5%;
+        color: #e83e8c;
+        word-wrap: break-word;
+      }
+      code,
+      kbd,
+      pre,
+      samp {
+        font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+          "Courier New", monospace;
+        font-size: 1em;
+      }
+      *,
+      ::after,
+      ::before {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>JS Multidimensional Arrays</h1>
+    <p>
+      Multidimensional arrays are not directly provided in JavaScript. If we
+      want to use anything which acts as a multidimensional array then we need
+      to create a multidimensional array by using another one-dimensional array.
+      So multidimensional arrays in JavaScript is known as arrays inside another
+      array. We need to put some arrays inside an array, then the total thing is
+      working like a multidimensional array. The array, in which the other
+      arrays are going to insert, that array is use as the multidimensional
+      array in our code. To define a multidimensional array its exactly the same
+      as defining a normal one-dimensional array.
+    </p>
+    <h1>One-Dimensional array:</h1>
+    <p>var arr = []; // Empty 1D array</p>
+    <p>var arr1 = ["A", "B", "C", "D"] // 1D array contains some alphabets</p>
+    <p>var arr1 = [1, 2, 3, 4, 5] // 1D array contains some digits</p>
+    <hr />
+
+    <h1>Multidimensional-Dimensional array:</h1>
+    <h1>Method 1:</h1>
+    <pre
+      class="language-javascript"
+      tabindex="0"
+    ><code class="language-javascript">1st<span class="token punctuation">,</span> need to define some 1D array
+<span class="token keyword">var</span> arr1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"ABC"</span><span class="token punctuation">,</span> <span class="token number">24</span><span class="token punctuation">,</span> <span class="token number">18000</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> arr2 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"EFG"</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">30000</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> arr3 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"IJK"</span><span class="token punctuation">,</span> <span class="token number">28</span><span class="token punctuation">,</span> <span class="token number">41000</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> arr4 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"EFG"</span><span class="token punctuation">,</span> <span class="token number">31</span><span class="token punctuation">,</span> <span class="token number">28000</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> arr5 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"EFG"</span><span class="token punctuation">,</span> <span class="token number">29</span><span class="token punctuation">,</span> <span class="token number">35000</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment">// "salary" defines like a 1D array but it already contains some 1D array</span>
+<span class="token keyword">var</span> salary <span class="token operator">=</span> <span class="token punctuation">[</span>arr1<span class="token punctuation">,</span> arr2<span class="token punctuation">,</span> arr3<span class="token punctuation">,</span> arr4<span class="token punctuation">,</span> arr5<span class="token punctuation">]</span><span class="token punctuation">;</span> </code></pre>
+    <p>
+      1st, need to define some 1D array var arr1 = ["ABC", 24, 18000]; var arr2
+      = ["EFG", 30, 30000]; var arr3 = ["IJK", 28, 41000]; var arr4 = ["EFG",
+      31, 28000]; var arr5 = ["EFG", 29, 35000]; // "salary" defines like a 1D
+      array but it already contains some 1D array var salary = [arr1, arr2,
+      arr3, arr4, arr5];
+    </p>
+    <p>
+      Here arr1, arr2, …arr5 are some 1D arrays that are inside salary array.
+    </p>
+    <h1>Method 2:</h1>
+    <pre
+      class="language-javascript"
+      tabindex="0"
+    ><code class="language-javascript"><span class="token keyword">var</span> salary <span class="token operator">=</span> <span class="token punctuation">[</span>
+   <span class="token punctuation">[</span><span class="token string">"ABC"</span><span class="token punctuation">,</span> <span class="token number">24</span><span class="token punctuation">,</span> <span class="token number">18000</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+   <span class="token punctuation">[</span><span class="token string">"EFG"</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">30000</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+   <span class="token punctuation">[</span><span class="token string">"IJK"</span><span class="token punctuation">,</span> <span class="token number">28</span><span class="token punctuation">,</span> <span class="token number">41000</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+   <span class="token punctuation">[</span><span class="token string">"EFG"</span><span class="token punctuation">,</span> <span class="token number">31</span><span class="token punctuation">,</span> <span class="token number">28000</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+</code></pre>
+    <p>
+      Here, salary array works like a multidimensional array. This notations are
+      known as array literals.
+    </p>
+    <h1>Accessing the element of salary array:</h1>
+    <ul>
+      <li>To access the array element we need a simple index-based notation</li>
+    </ul>
+    <p>// This notation access the salary of "ABC" person which is 18000,</p>
+    <p>// [0] selects 1st row, and [2] selects the 3rd element</p>
+    <p>// of that 1st row which is 18000</p>
+    <p>salary[0][2];</p>
+    <br /><br />
+    <p>// Similarly,</p>
+    <p>salary[3][2]; // Selects 28000</p>
+    <p>**This notation is used for both Method 1 and Method 2.</p>
+    <ul>
+      <li>For many iteration, we need to use loop to access the elements,</li>
+    </ul>
+    <pre
+      class="language-javascript"
+      tabindex="0"
+    ><code class="language-javascript"><span class="token comment">// This loop is for outer array</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> l1 <span class="token operator">=</span> salary<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> l1<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+ <span class="token punctuation">{</span>
+
+    <span class="token comment">// This loop is for inner-arrays</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> l2 <span class="token operator">=</span> salary<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span> j <span class="token operator">&lt;</span> l2<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token comment">// Accessing each elements of inner-array</span>
+        documents<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span> salary<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+    <hr />
+    <h1>Adding elements in Multidimensional Array:</h1>
+    <p>
+      Adding elements in multi-dimensional arrays can be achieved in two ways in
+      inner array or outer array. The inner array can be done in two different
+      ways.
+    </p>
+    <h1>Adding elements to inner array:</h1>
+    <p>
+      We can use simple square bracket notation to add elements in
+      multidimensional array.
+    </p>
+    <p>salary[3][3] = "Pakistan";</p>
+    <br /><br /><br />
+    <p>// It adds "Pakistan" at the 4th index of 4th sub-array,</p>
+    <p>// If we print the entire 4th sub-array, document.write(salary[3]);</p>
+    <p>// the output will be : ["EFG", 31, 28000, "Pakistan"]</p>
+    <p>// indexing starts from 0</p>
+    <ul>
+      <li>We can use push() method to add elements in the array.</li>
+    </ul>
+    <p>salary[3].push("Pakistan", "Karachi");</p>
+    <p>// It add "Pakistan" at the 4th index and "karachi" at</p>
+    <p>// 5th index of 4th sub-array</p>
+    <p>// If we print the entire 4th sub-array,</p>
+    <p>// document.write(salary[3]);</p>
+    <p>// The output will be : ["EFG", 31, 28000, "Pakistan", "Karachi"]</p>
+    <p>// Indexing starts from 0</p>
+    <ul>
+      <li>Adding elements to outer array:</li>
+    </ul>
+    <p>It is much similar to previous methods.</p>
+    <p>salary.push(["MNO", 29, 33300]);</p>
+    <p>// This row added after the last row in the "salary" array</p>
+    <hr />
+    <h1>Removing elements in Multidimensional Array:</h1>
+    <p>
+      We can use pop() methods to remove elements from inner-arrays, and also
+      use pop() method for removing a entire inner array.
+    </p>
+    <p>// Remove last element from 4th sub-array</p>
+    <p>// That is 28000 indexing starts from 0</p>
+    <p>salary[3].pop();</p>
+    <p>// Removes last sub-array</p>
+    <p>// That is "["EFG", 31, 28000]"</p>
+    <p>salary.pop();</p>
+    <pre
+      class="language-markup"
+      tabindex="0"
+    ><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>JavaScript<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+    <span class="token keyword">var</span> ary <span class="token operator">=</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">[</span><span class="token string">"Harry"</span><span class="token punctuation">,</span><span class="token number">18</span><span class="token punctuation">,</span><span class="token string">"Male"</span><span class="token punctuation">,</span><span class="token string">"B.Com"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">[</span><span class="token string">"Sunny"</span><span class="token punctuation">,</span><span class="token number">19</span><span class="token punctuation">,</span><span class="token string">"Male"</span><span class="token punctuation">,</span><span class="token string">"BCA"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">[</span><span class="token string">"Sarah"</span><span class="token punctuation">,</span><span class="token number">18</span><span class="token punctuation">,</span><span class="token string">"Male"</span><span class="token punctuation">,</span><span class="token string">"BCA"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">[</span><span class="token string">"Tom"</span><span class="token punctuation">,</span><span class="token number">17</span><span class="token punctuation">,</span><span class="token string">"Male"</span><span class="token punctuation">,</span><span class="token string">"B.A."</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">[</span><span class="token string">"Mac"</span><span class="token punctuation">,</span><span class="token number">17</span><span class="token punctuation">,</span><span class="token string">"Male"</span><span class="token punctuation">,</span><span class="token string">"B.A."</span><span class="token punctuation">]</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+    document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"&lt;table border='1px' cellspacing='0'&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> a <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> a<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"&lt;tr&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> b<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> b <span class="token operator">&lt;</span> <span class="token number">4</span><span class="token punctuation">;</span> b<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"&lt;td&gt;"</span> <span class="token operator">+</span> ary<span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">[</span>b<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">"&lt;/td&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"&lt;/tr&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+      document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"&lt;/table&gt;"</span><span class="token punctuation">)</span>
+  </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></code></pre>
+    <hr />
+    <h1>With Array Length</h1>
+
+    <pre
+      class="language-markup"
+      tabindex="0"
+    ><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>JavaScript<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+    <span class="token keyword">var</span> ary <span class="token operator">=</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">[</span><span class="token string">"Harry"</span><span class="token punctuation">,</span><span class="token number">18</span><span class="token punctuation">,</span><span class="token string">"Male"</span><span class="token punctuation">,</span><span class="token string">"B.Com"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">[</span><span class="token string">"Sunny"</span><span class="token punctuation">,</span><span class="token number">19</span><span class="token punctuation">,</span><span class="token string">"Male"</span><span class="token punctuation">,</span><span class="token string">"BCA"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">[</span><span class="token string">"Sarah"</span><span class="token punctuation">,</span><span class="token number">18</span><span class="token punctuation">,</span><span class="token string">"Male"</span><span class="token punctuation">,</span><span class="token string">"BCA"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">[</span><span class="token string">"Tom"</span><span class="token punctuation">,</span><span class="token number">17</span><span class="token punctuation">,</span><span class="token string">"Male"</span><span class="token punctuation">,</span><span class="token string">"B.A."</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">[</span><span class="token string">"Mac"</span><span class="token punctuation">,</span><span class="token number">17</span><span class="token punctuation">,</span><span class="token string">"Male"</span><span class="token punctuation">,</span><span class="token string">"B.A."</span><span class="token punctuation">]</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+    document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>ary<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"&lt;table border='1px' cellspacing='0'&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> a <span class="token operator">&lt;</span> ary<span class="token punctuation">.</span>length<span class="token punctuation">;</span> a<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"&lt;tr&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> b<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> b <span class="token operator">&lt;</span> ary<span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span> b<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"&lt;td&gt;"</span> <span class="token operator">+</span> ary<span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">[</span>b<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">"&lt;/td&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"&lt;/tr&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+      document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"&lt;/table&gt;"</span><span class="token punctuation">)</span>
+  </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></code></pre>
+  </body>
+  <script>
+    let data = [
+      ["Hamza Khan Lodhi", "14", "Male", "BCOM"],
+      ["Rashida Khan Lodhi", "14", "Female", "BCOM"],
+      ["Umar Khan Lodhi", "14", "Male", "BCOM"],
+      ["Rehman Khan Lodhi", "14", "Male", "BCOM"],
+      ["Zubair Khan Lodhi", "14", "Male", "BCOM"],
+      ["Raheem Khan Lodhi", "14", "Male", "BCOM"],
+      ["Irfan Khan Lodhi", "14", "Male", "BCOM"],
+      ["Ali Khan Lodhi", "14", "Male", "BCOM"],
+      ["Hafsa Khan Lodhi", "14", "Female", "BCOM"],
+    ];
+
+    let c = prompt("");
+
+    for (let a = 0; a < data.length; a++) {
+      for (let b = 0; b < 4; b++) {
+        if (data[a][b] == c) {
+          document.write(
+            data[a][0] + " " + data[a][1] + " " + data[a][2] + " " + data[a][3]
+          );
+          alert("Data Founded");
+        }
+      }
+      document.write("<br>");
+    }
+  </script>
+</html>
