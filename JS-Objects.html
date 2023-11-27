@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Objects</title>
+    <style>
+      * {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 50%;
+      }
+
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+
+      code[class*="language-"],
+      pre[class*="language-"] {
+        color: black;
+        background: none;
+        background-color: rgba(0, 0, 0, 0);
+        font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+        font-size: 1em;
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        word-wrap: normal;
+        line-height: 1.5;
+        -moz-tab-size: 4;
+        -o-tab-size: 4;
+        tab-size: 4;
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+      }
+
+      :not(pre) > code[class*="language-"]::after,
+      pre[class*="language-"]::after {
+        right: 0.75em;
+
+        left: auto;
+
+        -webkit-transform: rotate(2deg);
+
+        -moz-transform: rotate(2deg);
+
+        -ms-transform: rotate(2deg);
+
+        -o-transform: rotate(2deg);
+
+        transform: rotate(2deg);
+      }
+      pre[class*="language-"]::before,
+      pre[class*="language-"]::after {
+        content: "";
+
+        z-index: -2;
+
+        display: block;
+
+        position: absolute;
+
+        bottom: 0.75em;
+
+        left: 0.18em;
+
+        width: 40%;
+
+        height: 20%;
+
+        max-height: 13em;
+
+        -webkit-transform: rotate(-2deg);
+
+        -moz-transform: rotate(-2deg);
+
+        -ms-transform: rotate(-2deg);
+
+        -o-transform: rotate(-2deg);
+
+        transform: rotate(-2deg);
+      }
+
+      :not(pre) > code[class*="language-"],
+      pre[class*="language-"] {
+        background-color: #fdfdfd;
+
+        -webkit-box-sizing: border-box;
+
+        -moz-box-sizing: border-box;
+
+        box-sizing: border-box;
+
+        margin-bottom: 1em;
+      }
+      pre[class*="language-"] {
+        position: relative;
+
+        margin: 0.5em 0;
+
+        margin-bottom: 0.5em;
+
+        overflow: visible;
+
+        padding: 0;
+      }
+      code[class*="language-"],
+      pre[class*="language-"] {
+        color: black;
+
+        background: none;
+
+        background-color: rgba(0, 0, 0, 0);
+
+        font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+
+        font-size: 1em;
+
+        text-align: left;
+
+        white-space: pre;
+
+        word-spacing: normal;
+
+        word-break: normal;
+
+        word-wrap: normal;
+
+        line-height: 1.5;
+
+        -moz-tab-size: 4;
+
+        -o-tab-size: 4;
+
+        tab-size: 4;
+
+        -webkit-hyphens: none;
+
+        -moz-hyphens: none;
+
+        -ms-hyphens: none;
+
+        hyphens: none;
+      }
+      pre {
+        display: block;
+
+        font-size: 87.5%;
+
+        color: #212529;
+      }
+      pre {
+        margin-top: 0;
+
+        margin-bottom: 1rem;
+
+        overflow: auto;
+
+        -ms-overflow-style: scrollbar;
+      }
+      code,
+      kbd,
+      pre,
+      samp {
+        font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+          "Courier New", monospace;
+
+        font-size: 1em;
+      }
+
+      pre[class*="language-"] > code {
+        position: relative;
+        border-left: 10px solid #358ccb;
+        box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
+        background-color: #fdfdfd;
+        background-image: linear-gradient(
+          transparent 50%,
+          rgba(69, 142, 209, 0.04) 50%
+        );
+        background-size: 3em 3em;
+        background-origin: content-box;
+        background-attachment: local;
+      }
+
+      code[class*="language"] {
+        max-height: inherit;
+        height: inherit;
+        padding: 0 1em;
+        display: block;
+        overflow: auto;
+      }
+
+      code[class*="language-"],
+      pre[class*="language-"] {
+        color: black;
+        background: none;
+        background-color: rgba(0, 0, 0, 0);
+        background-attachment: scroll;
+        background-image: none;
+        background-size: auto;
+        background-origin: padding-box;
+        font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+        font-size: 1em;
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        word-wrap: normal;
+        line-height: 1.5;
+        -moz-tab-size: 4;
+        -o-tab-size: 4;
+        tab-size: 4;
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+      }
+
+      pre code {
+        font-size: inherit;
+        color: inherit;
+        word-break: normal;
+      }
+
+      code {
+        font-size: 87.5%;
+        color: #e83e8c;
+        word-wrap: break-word;
+      }
+      code,
+      kbd,
+      pre,
+      samp {
+        font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+          "Courier New", monospace;
+        font-size: 1em;
+      }
+      *,
+      ::after,
+      ::before {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>JS Objects</h1>
+    <hr />
+    <p>
+      A javaScript object is an entity having state and behavior (properties and
+      method). For example: car, pen, bike, chair, glass, keyboard, monitor etc.
+    </p>
+
+    <p>
+      JavaScript is an object-based language. Everything is an object in
+      JavaScript.
+    </p>
+
+    <p>
+      JavaScript is template based not class based. Here, we don't create class
+      to get the object. But, we direct create objects.
+    </p>
+
+    <h3>Creating Objects in JavaScript</h3>
+
+    <h3>There are 3 ways to create objects.</h3>
+
+    <ol>
+      <li>By object literal</li>
+      <li>By creating instance of Object directly (using new keyword)</li>
+      <li>By using an object constructor (using new keyword)</li>
+    </ol>
+
+    <h3>1) JavaScript Object by object literal</h3>
+
+    <p>
+      The syntax of creating object using object literal is given below:&nbsp;
+      &nbsp;&nbsp;
+    </p>
+
+    <pre
+      class="language-javascript"
+      tabindex="0"
+    ><code class="language-javascript">object<span class="token operator">=</span><span class="token punctuation">{</span><span class="token literal-property property">property1</span><span class="token operator">:</span>value1<span class="token punctuation">,</span><span class="token literal-property property">property2</span><span class="token operator">:</span>value2<span class="token operator">...</span><span class="token punctuation">.</span><span class="token punctuation">.</span>propertyN<span class="token operator">:</span>valueN<span class="token punctuation">}</span>  </code></pre>
+    &nbsp;
+
+    <h3>2) By creating instance of Object</h3>
+
+    <p>
+      The syntax of creating object directly is given below:&nbsp; &nbsp;
+      &nbsp;&nbsp;
+    </p>
+
+    <pre
+      class="language-javascript"
+      tabindex="0"
+    ><code class="language-javascript"><span class="token keyword">var</span> objectname<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  </code></pre>
+
+    <p>
+      Here,&nbsp;<strong>new keyword</strong>&nbsp;is used to create object.<br />
+      &nbsp;
+    </p>
+
+    <h3>3) By using an Object constructor</h3>
+
+    <p>
+      Here, you need to create function with arguments. Each argument value can
+      be assigned in the current object by using this keyword.
+    </p>
+
+    <p>
+      The&nbsp;<strong>this keyword</strong>&nbsp;refers to the current object.
+    </p>
+
+    <pre
+      class="language-markup"
+      tabindex="0"
+    ><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>JavaScript<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+    <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token punctuation">{</span>
+		<span class="token literal-property property">fname</span> <span class="token operator">:</span> <span class="token string">'Yahoo'</span><span class="token punctuation">,</span>
+		<span class="token literal-property property">lname</span> <span class="token operator">:</span> <span class="token string">'Baba'</span><span class="token punctuation">,</span>
+		<span class="token literal-property property">age</span> <span class="token operator">:</span> <span class="token number">25</span><span class="token punctuation">,</span>
+		<span class="token literal-property property">email</span><span class="token operator">:</span> <span class="token string">'hello@yahoobaba.net'</span><span class="token punctuation">,</span>
+	<span class="token punctuation">}</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>fname <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>email<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></code></pre>
+
+    <hr />
+    <pre
+      class="language-markup"
+      tabindex="0"
+    ><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>JavaScript<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+    <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token punctuation">{</span>
+		<span class="token literal-property property">fname</span> <span class="token operator">:</span> <span class="token string">'Yahoo'</span><span class="token punctuation">,</span>
+		<span class="token literal-property property">lname</span> <span class="token operator">:</span> <span class="token string">'Baba'</span><span class="token punctuation">,</span>
+		<span class="token literal-property property">age</span> <span class="token operator">:</span> <span class="token number">25</span><span class="token punctuation">,</span>
+		<span class="token literal-property property">email</span><span class="token operator">:</span> <span class="token string">'hello@yahoobaba.net'</span><span class="token punctuation">,</span>
+		<span class="token literal-property property">favMovies</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'Dhoom'</span><span class="token punctuation">,</span> <span class="token string">'Sholay'</span><span class="token punctuation">,</span> <span class="token string">'Hum'</span><span class="token punctuation">]</span>
+	<span class="token punctuation">}</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>favMovies<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></code></pre>
+
+    <hr />
+    <pre
+      class="language-markup"
+      tabindex="0"
+    ><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>JavaScript<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+    <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token punctuation">{</span>
+            <span class="token literal-property property">fname</span> <span class="token operator">:</span> <span class="token string">'Yahoo'</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">lname</span> <span class="token operator">:</span> <span class="token string">'Baba'</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">age</span> <span class="token operator">:</span> <span class="token number">25</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">email</span><span class="token operator">:</span> <span class="token string">'hello@yahoobaba.net'</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">favMovies</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'Dhoom'</span><span class="token punctuation">,</span> <span class="token string">'Sholay'</span><span class="token punctuation">,</span> <span class="token string">'Hum'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token function-variable function">salary</span> <span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token number">25000</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token function-variable function">fullname</span> <span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>fname <span class="token operator">+</span> <span class="token string">" "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>lname<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+   
+        document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span><span class="token function">salary</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span><span class="token function">fullname</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></code></pre>
+
+    <hr />
+    <pre
+      class="language-markup"
+      tabindex="0"
+    ><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>JavaScript<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+    <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token punctuation">{</span>
+            <span class="token literal-property property">fname</span> <span class="token operator">:</span> <span class="token string">'Yahoo'</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">lname</span> <span class="token operator">:</span> <span class="token string">'Baba'</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">age</span> <span class="token operator">:</span> <span class="token number">25</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">email</span><span class="token operator">:</span> <span class="token string">'hello@yahoobaba.net'</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">favMovies</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'Dhoom'</span><span class="token punctuation">,</span> <span class="token string">'Sholay'</span><span class="token punctuation">,</span> <span class="token string">'Hum'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">living</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token string-property property">'city'</span> <span class="token operator">:</span> <span class="token string">'Chandigarh'</span><span class="token punctuation">,</span>
+                <span class="token string-property property">'country'</span> <span class="token operator">:</span> <span class="token string">'India'</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token function-variable function">salary</span> <span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token number">25000</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token function-variable function">fullname</span> <span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>fname <span class="token operator">+</span> <span class="token string">" "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>lname<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+   
+        document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>fname <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>lname <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>age <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>email <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>favMovies <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>favMovies<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>favMovies<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>favMovies<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>living<span class="token punctuation">.</span>city <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span><span class="token function">salary</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span><span class="token function">fullname</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></code></pre>
+    <hr />
+  </body>
+  <script>
+    let obj = {
+      fname: "Hamza Khan",
+      lname: "Lodhi",
+      age: 17,
+      email: "hamzalodhi2023@gmail.com",
+    };
+    document.write(obj.fname + " " + obj.lname);
+  </script>
+</html>
