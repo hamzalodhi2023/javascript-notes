@@ -256,5 +256,71 @@
       }
     </style>
   </head>
-  <body></body>
+  <body>
+    <hr />
+    <p>
+      The&nbsp;<strong>Array</strong>&nbsp;object lets you store multiple values
+      in a single variable. It stores a fixed-size sequential collection of
+      elements of the same type. An array is used to store a collection of data,
+      but it is often more useful to think of an array as a collection of
+      variables of the same type.
+    </p>
+
+    <h3>Syntax</h3>
+
+    <p>
+      Use the following syntax to create
+      an&nbsp;<strong>Array</strong>&nbsp;object −<br />
+      &nbsp;
+    </p>
+    <pre
+      class="language-javascript"
+      tabindex="0"
+    ><code class="language-javascript"><span class="token keyword">var</span> fruits <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Array</span><span class="token punctuation">(</span> <span class="token string">"apple"</span><span class="token punctuation">,</span> <span class="token string">"orange"</span><span class="token punctuation">,</span> <span class="token string">"mango"</span> <span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+    <p>
+      The&nbsp;<strong>Array</strong>&nbsp;parameter is a list of strings or
+      integers. When you specify a single numeric parameter with the Array
+      constructor, you specify the initial length of the array. The maximum
+      length allowed for an array is 4,294,967,295.<br />
+      &nbsp;
+    </p>
+
+    <pre
+      class="language-markup"
+      tabindex="0"
+    ><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>JavaScript<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+    <span class="token keyword">var</span> student <span class="token operator">=</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span><span class="token literal-property property">name</span> <span class="token operator">:</span> <span class="token string">'Ram'</span><span class="token punctuation">,</span> <span class="token literal-property property">age</span> <span class="token operator">:</span> <span class="token number">15</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span><span class="token literal-property property">name</span> <span class="token operator">:</span> <span class="token string">'Karan'</span><span class="token punctuation">,</span> <span class="token literal-property property">age</span> <span class="token operator">:</span> <span class="token number">13</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span><span class="token literal-property property">name</span> <span class="token operator">:</span> <span class="token string">'Rahul'</span><span class="token punctuation">,</span> <span class="token literal-property property">age</span> <span class="token operator">:</span> <span class="token number">14</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>student<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> a<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>a <span class="token operator">&lt;</span> student<span class="token punctuation">.</span>length<span class="token punctuation">;</span>a<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>student<span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">" "</span> <span class="token operator">+</span> student<span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">.</span>age <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></code></pre>
+
+    <hr />
+  </body>
+  <script>
+    let student = [
+      { name: "Hamza", age: 17 },
+      { name: "Umar", age: 42 },
+      { name: "Zaid", age: 53 },
+    ];
+    console.log(student);
+    for (let a = 0; a < student.length; a++) {
+      document.write(student[a].name + "<br>");
+    }
+  </script>
 </html>
