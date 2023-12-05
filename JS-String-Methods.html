@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS String Methods</title>
+    <style>
+      * {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 50%;
+      }
+
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+
+      code[class*="language-"],
+      pre[class*="language-"] {
+        color: black;
+        background: none;
+        background-color: rgba(0, 0, 0, 0);
+        font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+        font-size: 1em;
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        word-wrap: normal;
+        line-height: 1.5;
+        -moz-tab-size: 4;
+        -o-tab-size: 4;
+        tab-size: 4;
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+      }
+
+      :not(pre) > code[class*="language-"]::after,
+      pre[class*="language-"]::after {
+        right: 0.75em;
+
+        left: auto;
+
+        -webkit-transform: rotate(2deg);
+
+        -moz-transform: rotate(2deg);
+
+        -ms-transform: rotate(2deg);
+
+        -o-transform: rotate(2deg);
+
+        transform: rotate(2deg);
+      }
+      pre[class*="language-"]::before,
+      pre[class*="language-"]::after {
+        content: "";
+
+        z-index: -2;
+
+        display: block;
+
+        position: absolute;
+
+        bottom: 0.75em;
+
+        left: 0.18em;
+
+        width: 40%;
+
+        height: 20%;
+
+        max-height: 13em;
+
+        -webkit-transform: rotate(-2deg);
+
+        -moz-transform: rotate(-2deg);
+
+        -ms-transform: rotate(-2deg);
+
+        -o-transform: rotate(-2deg);
+
+        transform: rotate(-2deg);
+      }
+
+      :not(pre) > code[class*="language-"],
+      pre[class*="language-"] {
+        background-color: #fdfdfd;
+
+        -webkit-box-sizing: border-box;
+
+        -moz-box-sizing: border-box;
+
+        box-sizing: border-box;
+
+        margin-bottom: 1em;
+      }
+      pre[class*="language-"] {
+        position: relative;
+
+        margin: 0.5em 0;
+
+        margin-bottom: 0.5em;
+
+        overflow: visible;
+
+        padding: 0;
+      }
+      code[class*="language-"],
+      pre[class*="language-"] {
+        color: black;
+
+        background: none;
+
+        background-color: rgba(0, 0, 0, 0);
+
+        font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+
+        font-size: 1em;
+
+        text-align: left;
+
+        white-space: pre;
+
+        word-spacing: normal;
+
+        word-break: normal;
+
+        word-wrap: normal;
+
+        line-height: 1.5;
+
+        -moz-tab-size: 4;
+
+        -o-tab-size: 4;
+
+        tab-size: 4;
+
+        -webkit-hyphens: none;
+
+        -moz-hyphens: none;
+
+        -ms-hyphens: none;
+
+        hyphens: none;
+      }
+      pre {
+        display: block;
+
+        font-size: 87.5%;
+
+        color: #212529;
+      }
+      pre {
+        margin-top: 0;
+
+        margin-bottom: 1rem;
+
+        overflow: auto;
+
+        -ms-overflow-style: scrollbar;
+      }
+      code,
+      kbd,
+      pre,
+      samp {
+        font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+          "Courier New", monospace;
+
+        font-size: 1em;
+      }
+
+      pre[class*="language-"] > code {
+        position: relative;
+        border-left: 10px solid #358ccb;
+        box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
+        background-color: #fdfdfd;
+        background-image: linear-gradient(
+          transparent 50%,
+          rgba(69, 142, 209, 0.04) 50%
+        );
+        background-size: 3em 3em;
+        background-origin: content-box;
+        background-attachment: local;
+      }
+
+      code[class*="language"] {
+        max-height: inherit;
+        height: inherit;
+        padding: 0 1em;
+        display: block;
+        overflow: auto;
+      }
+
+      code[class*="language-"],
+      pre[class*="language-"] {
+        color: black;
+        background: none;
+        background-color: rgba(0, 0, 0, 0);
+        background-attachment: scroll;
+        background-image: none;
+        background-size: auto;
+        background-origin: padding-box;
+        font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+        font-size: 1em;
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        word-wrap: normal;
+        line-height: 1.5;
+        -moz-tab-size: 4;
+        -o-tab-size: 4;
+        tab-size: 4;
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+      }
+
+      pre code {
+        font-size: inherit;
+        color: inherit;
+        word-break: normal;
+      }
+
+      code {
+        font-size: 87.5%;
+        color: #e83e8c;
+        word-wrap: break-word;
+      }
+      code,
+      kbd,
+      pre,
+      samp {
+        font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+          "Courier New", monospace;
+        font-size: 1em;
+      }
+      *,
+      ::after,
+      ::before {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>JS String Methods</h1>
+    <hr />
+
+    <h3>
+      <br />
+      String Methods:
+    </h3>
+    &nbsp;
+
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>
+            <p dir="ltr">Instance Methods</p>
+          </th>
+          <th>
+            <p dir="ltr">Description</p>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>at()</td>
+          <td>Find the character at the specified index.</td>
+        </tr>
+        <tr>
+          <td>anchor()</td>
+          <td>Creates an anchor element that is used as a hypertext target.</td>
+        </tr>
+        <tr>
+          <td>charAt()</td>
+          <td>Returns that character at the given index of the string.</td>
+        </tr>
+        <tr>
+          <td>charCodeAt()</td>
+          <td>
+            Returns a Unicode character set code unit of the character present
+            at the index in the string.
+          </td>
+        </tr>
+        <tr>
+          <td>codePointAt()</td>
+          <td>
+            Return a non-negative integer value i.e, the code point value of the
+            specified element.
+          </td>
+        </tr>
+        <tr>
+          <td>concat()</td>
+          <td>Join two or more strings together in JavaScript.</td>
+        </tr>
+        <tr>
+          <td>endsWith()</td>
+          <td>
+            Whether the given string ends with the characters of the specified
+            string or not.
+          </td>
+        </tr>
+        <tr>
+          <td>includes()</td>
+          <td>
+            Returns true if the string contains the characters, otherwise, it
+            returns false.
+          </td>
+        </tr>
+        <tr>
+          <td>indexOf()</td>
+          <td>
+            Finds the index of the first occurrence of the argument string in
+            the given string.
+          </td>
+        </tr>
+        <tr>
+          <td>lastIndexOf()</td>
+          <td>
+            Finds the index of the last occurrence of the argument string in the
+            given string.
+          </td>
+        </tr>
+        <tr>
+          <td>localeCompare()</td>
+          <td>Compare any two elements and returns a positive number</td>
+        </tr>
+        <tr>
+          <td>match()</td>
+          <td>Search a string for a match against any regular expression.</td>
+        </tr>
+        <tr>
+          <td>matchAll()</td>
+          <td>
+            Return all the iterators matching the reference string against a
+            regular expression.
+          </td>
+        </tr>
+        <tr>
+          <td>normalize()</td>
+          <td>Return a Unicode normalization form of a given input string.</td>
+        </tr>
+        <tr>
+          <td>padEnd()</td>
+          <td>
+            Pad a string with another string until it reaches the given length
+            from rightend.
+          </td>
+        </tr>
+        <tr>
+          <td>padStart()</td>
+          <td>
+            Pad a string with another string until it reaches the given length
+            from leftend.
+          </td>
+        </tr>
+        <tr>
+          <td>repeat()</td>
+          <td>
+            Build a new string containing a specified number of copies of the
+            string.
+          </td>
+        </tr>
+        <tr>
+          <td>replace()</td>
+          <td>
+            Replace a part of the given string with some another string or a
+            regular expression
+          </td>
+        </tr>
+        <tr>
+          <td>replaceAll()</td>
+          <td>
+            Returns a new string after replacing all the matches of a string
+            with a specified string/regex.
+          </td>
+        </tr>
+        <tr>
+          <td>search()</td>
+          <td>Search for a match in between regular expressions and a</td>
+        </tr>
+        <tr>
+          <td>slice()</td>
+          <td>Return a part or slice of the given input string.</td>
+        </tr>
+        <tr>
+          <td>split()</td>
+          <td>
+            Separate given string into substrings using a specified separator
+            provided in the argument.
+          </td>
+        </tr>
+        <tr>
+          <td>startsWith()</td>
+          <td>
+            Check whether the given string starts with the characters of the
+            specified string or not.
+          </td>
+        </tr>
+        <tr>
+          <td>substr()</td>
+          <td>
+            Returns the specified number of characters from the specified index
+            from the given string.
+          </td>
+        </tr>
+        <tr>
+          <td>substring()</td>
+          <td>
+            Return the part of the given string from the start index to the end
+            index.
+          </td>
+        </tr>
+        <tr>
+          <td>toLocaleUpperCase()</td>
+          <td>
+            Returns the calling string value converted to a uppercase letter.
+          </td>
+        </tr>
+        <tr>
+          <td>toUpperCase()</td>
+          <td>Converts the entire string to uppercase.</td>
+        </tr>
+        <tr>
+          <td>toString()</td>
+          <td>Return the given string itself.</td>
+        </tr>
+        <tr>
+          <td>trim()</td>
+          <td>Remove the white spaces from both ends of the given string.</td>
+        </tr>
+        <tr>
+          <td>trimEnd()</td>
+          <td>Remove white space from the end of a string.</td>
+        </tr>
+        <tr>
+          <td>trimStart()</td>
+          <td>Remove white space from the start of a string.</td>
+        </tr>
+        <tr>
+          <td>valueOf()</td>
+          <td>Return the value of the given string.</td>
+        </tr>
+        <tr>
+          <td>
+            <p dir="ltr">string[Symbol.iterator]()</p>
+          </td>
+          <td>
+            <p dir="ltr">
+              This method is used to make String iterable. [@@iterator]()
+              returns an iterator object which iterates over all code points of
+              the String.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>toLowerCase()</td>
+          <td>Converts the entire string to lowercase.</td>
+        </tr>
+        <tr>
+          <td>toLocaleLowerCase()</td>
+          <td>
+            Returns the calling string value converted to a lowercase letter.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    &nbsp;
+
+    <pre
+      class="language-markup"
+      tabindex="0"
+    ><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>JavaScript<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+		<span class="token keyword">var</span> str <span class="token operator">=</span> <span class="token string">"     JavaScript is a Great is Language"</span><span class="token punctuation">;</span>
+		<span class="token keyword">var</span> a <span class="token operator">=</span> str<span class="token punctuation">.</span>length<span class="token punctuation">;</span>  <span class="token comment">/* Length Method */</span>
+		<span class="token keyword">var</span> b <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* LowerCase Method */</span>
+		<span class="token keyword">var</span> c <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* UpperCase Method */</span>
+		<span class="token keyword">var</span> d <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">"ipt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* Include Method */</span>
+		<span class="token keyword">var</span> e <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span><span class="token string">"Java"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* StartWith Method */</span>
+		<span class="token keyword">var</span> f <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">endsWith</span><span class="token punctuation">(</span><span class="token string">"age"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* EndWith Method */</span>
+		<span class="token keyword">var</span> g <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span><span class="token string">"is"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* Search Method */</span>
+		<span class="token keyword">var</span> h <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">is</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* Match Method */</span>
+		<span class="token keyword">var</span> i <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">"is"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* IndexOf Method */</span>
+		<span class="token keyword">var</span> j <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">lastIndexOf</span><span class="token punctuation">(</span><span class="token string">"is"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* LastIndexOf Method */</span>
+		<span class="token keyword">var</span> k <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token string">"JavaScript"</span><span class="token punctuation">,</span><span class="token string">"PHP"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* Replace Method */</span>
+		<span class="token keyword">var</span> l <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* Trim Method */</span>
+
+		document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>a <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>b <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>c <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>d <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>e <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>f <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>g <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>h <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>j <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>k <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token function">alert</span><span class="token punctuation">(</span>l<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></code></pre>
+    <hr />
+  </body>
+  <script>
+    let str = "        This Is Is The Original         ";
+    document.write(str + "<br>");
+    let a = str.length;
+    document.write(a + "<br>");
+    a = str.toLowerCase();
+    document.write(a + "<br>");
+    a = str.toUpperCase();
+    document.write(a + "<br>");
+    a = str.includes("Original");
+    document.write(a + "<br>");
+    a = str.startsWith(" ");
+    document.write(a + "<br>");
+    a = str.endsWith(" ");
+    document.write(a + "<br>");
+    a = str.search("Is");
+    document.write(a + "<br>");
+    a = str.match(/Is/g);
+    document.write(a + "<br>");
+    a = str.indexOf("Is");
+    document.write(a + "<br>");
+    a = str.lastIndexOf("Is");
+    document.write(a + "<br>");
+    a = str.replace("Is", "");
+    document.write(a + "<br>");
+    a = str.trim();
+    document.write(a + "<br>");
+  </script>
+</html>
