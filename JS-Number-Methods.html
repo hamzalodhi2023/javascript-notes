@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Number Methods</title>
+    <style>
+      * {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 50%;
+      }
+
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+
+      code[class*="language-"],
+      pre[class*="language-"] {
+        color: black;
+        background: none;
+        background-color: rgba(0, 0, 0, 0);
+        font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+        font-size: 1em;
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        word-wrap: normal;
+        line-height: 1.5;
+        -moz-tab-size: 4;
+        -o-tab-size: 4;
+        tab-size: 4;
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+      }
+
+      :not(pre) > code[class*="language-"]::after,
+      pre[class*="language-"]::after {
+        right: 0.75em;
+
+        left: auto;
+
+        -webkit-transform: rotate(2deg);
+
+        -moz-transform: rotate(2deg);
+
+        -ms-transform: rotate(2deg);
+
+        -o-transform: rotate(2deg);
+
+        transform: rotate(2deg);
+      }
+      pre[class*="language-"]::before,
+      pre[class*="language-"]::after {
+        content: "";
+
+        z-index: -2;
+
+        display: block;
+
+        position: absolute;
+
+        bottom: 0.75em;
+
+        left: 0.18em;
+
+        width: 40%;
+
+        height: 20%;
+
+        max-height: 13em;
+
+        -webkit-transform: rotate(-2deg);
+
+        -moz-transform: rotate(-2deg);
+
+        -ms-transform: rotate(-2deg);
+
+        -o-transform: rotate(-2deg);
+
+        transform: rotate(-2deg);
+      }
+
+      :not(pre) > code[class*="language-"],
+      pre[class*="language-"] {
+        background-color: #fdfdfd;
+
+        -webkit-box-sizing: border-box;
+
+        -moz-box-sizing: border-box;
+
+        box-sizing: border-box;
+
+        margin-bottom: 1em;
+      }
+      pre[class*="language-"] {
+        position: relative;
+
+        margin: 0.5em 0;
+
+        margin-bottom: 0.5em;
+
+        overflow: visible;
+
+        padding: 0;
+      }
+      code[class*="language-"],
+      pre[class*="language-"] {
+        color: black;
+
+        background: none;
+
+        background-color: rgba(0, 0, 0, 0);
+
+        font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+
+        font-size: 1em;
+
+        text-align: left;
+
+        white-space: pre;
+
+        word-spacing: normal;
+
+        word-break: normal;
+
+        word-wrap: normal;
+
+        line-height: 1.5;
+
+        -moz-tab-size: 4;
+
+        -o-tab-size: 4;
+
+        tab-size: 4;
+
+        -webkit-hyphens: none;
+
+        -moz-hyphens: none;
+
+        -ms-hyphens: none;
+
+        hyphens: none;
+      }
+      pre {
+        display: block;
+
+        font-size: 87.5%;
+
+        color: #212529;
+      }
+      pre {
+        margin-top: 0;
+
+        margin-bottom: 1rem;
+
+        overflow: auto;
+
+        -ms-overflow-style: scrollbar;
+      }
+      code,
+      kbd,
+      pre,
+      samp {
+        font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+          "Courier New", monospace;
+
+        font-size: 1em;
+      }
+
+      pre[class*="language-"] > code {
+        position: relative;
+        border-left: 10px solid #358ccb;
+        box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
+        background-color: #fdfdfd;
+        background-image: linear-gradient(
+          transparent 50%,
+          rgba(69, 142, 209, 0.04) 50%
+        );
+        background-size: 3em 3em;
+        background-origin: content-box;
+        background-attachment: local;
+      }
+
+      code[class*="language"] {
+        max-height: inherit;
+        height: inherit;
+        padding: 0 1em;
+        display: block;
+        overflow: auto;
+      }
+
+      code[class*="language-"],
+      pre[class*="language-"] {
+        color: black;
+        background: none;
+        background-color: rgba(0, 0, 0, 0);
+        background-attachment: scroll;
+        background-image: none;
+        background-size: auto;
+        background-origin: padding-box;
+        font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+        font-size: 1em;
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        word-wrap: normal;
+        line-height: 1.5;
+        -moz-tab-size: 4;
+        -o-tab-size: 4;
+        tab-size: 4;
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+      }
+
+      pre code {
+        font-size: inherit;
+        color: inherit;
+        word-break: normal;
+      }
+
+      code {
+        font-size: 87.5%;
+        color: #e83e8c;
+        word-wrap: break-word;
+      }
+      code,
+      kbd,
+      pre,
+      samp {
+        font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+          "Courier New", monospace;
+        font-size: 1em;
+      }
+      *,
+      ::after,
+      ::before {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <hr />
+
+    <h3>JS Number Methods</h3>
+
+    <p>
+      These&nbsp;<strong>number methods</strong>&nbsp;can be used on all
+      JavaScript numbers:
+    </p>
+
+    <table class="table table-striped table-bordered">
+      <tbody>
+        <tr>
+          <th>Method</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>toString()</td>
+          <td>Returns a number as a string</td>
+        </tr>
+        <tr>
+          <td>toExponential()</td>
+          <td>Returns a number written in exponential notation</td>
+        </tr>
+        <tr>
+          <td>toFixed()</td>
+          <td>Returns a number written with a number of decimals</td>
+        </tr>
+        <tr>
+          <td>toPrecision()</td>
+          <td>Returns a number written with a specified length</td>
+        </tr>
+        <tr>
+          <td>ValueOf()</td>
+          <td>Returns a number as a number</td>
+        </tr>
+      </tbody>
+    </table>
+    <pre
+      class="language-markup"
+      tabindex="0"
+    ><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>JavaScript<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+    <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token string">"99"</span><span class="token punctuation">;</span>
+	<span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token function">Number</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>       
+	document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>num <span class="token operator">+</span> <span class="token number">10</span> <span class="token operator">+</span><span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">var</span> b <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+	<span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token function">Number</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>num <span class="token operator">+</span><span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token comment">/* ParesInt Method */</span>
+	<span class="token keyword">var</span> c <span class="token operator">=</span> <span class="token string">"10.00"</span><span class="token punctuation">;</span>
+	<span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token function">parseInt</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>num <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+	<span class="token comment">/* ParesFloat Method */</span>
+	<span class="token keyword">var</span> m <span class="token operator">=</span> <span class="token string">"10.33"</span><span class="token punctuation">;</span>
+	<span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token function">parseFloat</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>num <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			
+	<span class="token comment">/* IsFinite Method */</span>
+	<span class="token keyword">var</span> n <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+	<span class="token keyword">var</span> num <span class="token operator">=</span> Number<span class="token punctuation">.</span><span class="token function">isFinite</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>num <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	
+	<span class="token comment">/* IsInteger Method */</span>
+	<span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">10.50</span><span class="token punctuation">;</span>
+	<span class="token keyword">var</span> num <span class="token operator">=</span> Number<span class="token punctuation">.</span><span class="token function">isInteger</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>num <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token comment">/* ToFixed Method */</span>
+	<span class="token keyword">var</span> y <span class="token operator">=</span> <span class="token number">5.56789</span><span class="token punctuation">;</span>
+	<span class="token keyword">var</span> num <span class="token operator">=</span> y<span class="token punctuation">.</span><span class="token function">toFixed</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>num <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	
+	<span class="token comment">/* ToPrecision Method */</span>
+	<span class="token keyword">var</span> z <span class="token operator">=</span> <span class="token number">5.56789</span><span class="token punctuation">;</span>
+	<span class="token keyword">var</span> num <span class="token operator">=</span> z<span class="token punctuation">.</span><span class="token function">toPrecision</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>num <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+    <hr />
+  </body>
+  <script>
+    let a = "99.90";
+    let num = Number(a);
+    document.write(num + "<br>");
+    num = parseInt(a);
+    document.write(num + "<br>");
+    num = parseInt(a);
+    document.write(num + "<br>");
+    num = parseFloat(a);
+    document.write(num + "<br>");
+    num = Number.isInteger(a);
+    document.write(num + "<br>");
+  </script>
+</html>
