@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Date Methods</title>
+    <style>
+      * {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 50%;
+      }
+
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+
+      code[class*="language-"],
+      pre[class*="language-"] {
+        color: black;
+        background: none;
+        background-color: rgba(0, 0, 0, 0);
+        font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+        font-size: 1em;
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        word-wrap: normal;
+        line-height: 1.5;
+        -moz-tab-size: 4;
+        -o-tab-size: 4;
+        tab-size: 4;
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+      }
+
+      :not(pre) > code[class*="language-"]::after,
+      pre[class*="language-"]::after {
+        right: 0.75em;
+
+        left: auto;
+
+        -webkit-transform: rotate(2deg);
+
+        -moz-transform: rotate(2deg);
+
+        -ms-transform: rotate(2deg);
+
+        -o-transform: rotate(2deg);
+
+        transform: rotate(2deg);
+      }
+      pre[class*="language-"]::before,
+      pre[class*="language-"]::after {
+        content: "";
+
+        z-index: -2;
+
+        display: block;
+
+        position: absolute;
+
+        bottom: 0.75em;
+
+        left: 0.18em;
+
+        width: 40%;
+
+        height: 20%;
+
+        max-height: 13em;
+
+        -webkit-transform: rotate(-2deg);
+
+        -moz-transform: rotate(-2deg);
+
+        -ms-transform: rotate(-2deg);
+
+        -o-transform: rotate(-2deg);
+
+        transform: rotate(-2deg);
+      }
+
+      :not(pre) > code[class*="language-"],
+      pre[class*="language-"] {
+        background-color: #fdfdfd;
+
+        -webkit-box-sizing: border-box;
+
+        -moz-box-sizing: border-box;
+
+        box-sizing: border-box;
+
+        margin-bottom: 1em;
+      }
+      pre[class*="language-"] {
+        position: relative;
+
+        margin: 0.5em 0;
+
+        margin-bottom: 0.5em;
+
+        overflow: visible;
+
+        padding: 0;
+      }
+      code[class*="language-"],
+      pre[class*="language-"] {
+        color: black;
+
+        background: none;
+
+        background-color: rgba(0, 0, 0, 0);
+
+        font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+
+        font-size: 1em;
+
+        text-align: left;
+
+        white-space: pre;
+
+        word-spacing: normal;
+
+        word-break: normal;
+
+        word-wrap: normal;
+
+        line-height: 1.5;
+
+        -moz-tab-size: 4;
+
+        -o-tab-size: 4;
+
+        tab-size: 4;
+
+        -webkit-hyphens: none;
+
+        -moz-hyphens: none;
+
+        -ms-hyphens: none;
+
+        hyphens: none;
+      }
+      pre {
+        display: block;
+
+        font-size: 87.5%;
+
+        color: #212529;
+      }
+      pre {
+        margin-top: 0;
+
+        margin-bottom: 1rem;
+
+        overflow: auto;
+
+        -ms-overflow-style: scrollbar;
+      }
+      code,
+      kbd,
+      pre,
+      samp {
+        font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+          "Courier New", monospace;
+
+        font-size: 1em;
+      }
+
+      pre[class*="language-"] > code {
+        position: relative;
+        border-left: 10px solid #358ccb;
+        box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
+        background-color: #fdfdfd;
+        background-image: linear-gradient(
+          transparent 50%,
+          rgba(69, 142, 209, 0.04) 50%
+        );
+        background-size: 3em 3em;
+        background-origin: content-box;
+        background-attachment: local;
+      }
+
+      code[class*="language"] {
+        max-height: inherit;
+        height: inherit;
+        padding: 0 1em;
+        display: block;
+        overflow: auto;
+      }
+
+      code[class*="language-"],
+      pre[class*="language-"] {
+        color: black;
+        background: none;
+        background-color: rgba(0, 0, 0, 0);
+        background-attachment: scroll;
+        background-image: none;
+        background-size: auto;
+        background-origin: padding-box;
+        font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+        font-size: 1em;
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        word-wrap: normal;
+        line-height: 1.5;
+        -moz-tab-size: 4;
+        -o-tab-size: 4;
+        tab-size: 4;
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+      }
+
+      pre code {
+        font-size: inherit;
+        color: inherit;
+        word-break: normal;
+      }
+
+      code {
+        font-size: 87.5%;
+        color: #e83e8c;
+        word-wrap: break-word;
+      }
+      code,
+      kbd,
+      pre,
+      samp {
+        font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+          "Courier New", monospace;
+        font-size: 1em;
+      }
+      *,
+      ::after,
+      ::before {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>JS Date Methods</h1>
+    <hr />
+    <h3>The new Date() Constructor</h3>
+
+    <p>
+      In JavaScript, date objects are created with&nbsp;<code>new Date()</code>.
+    </p>
+
+    <p>
+      <code>new Date()</code>&nbsp;returns a date object with the current date
+      and time.
+    </p>
+
+    <h3>Get the Current Time</h3>
+
+    <pre
+      class="language-javascript"
+      tabindex="0"
+    ><code class="language-javascript"><span class="token keyword">const</span> date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+
+    <h3>Date Get Methods</h3>
+
+    <table class="table table-bordered table-striped">
+      <tbody>
+        <tr>
+          <th>Method</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>getFullYear()</td>
+          <td>
+            Get&nbsp;<strong>year</strong>&nbsp;as a four digit number (yyyy)
+          </td>
+        </tr>
+        <tr>
+          <td>getMonth()</td>
+          <td>Get&nbsp;<strong>month</strong>&nbsp;as a number (0-11)</td>
+        </tr>
+        <tr>
+          <td>getDate()</td>
+          <td>Get&nbsp;<strong>day</strong>&nbsp;as a number (1-31)</td>
+        </tr>
+        <tr>
+          <td>getDay()</td>
+          <td>Get&nbsp;<strong>weekday</strong>&nbsp;as a number (0-6)</td>
+        </tr>
+        <tr>
+          <td>getHours()</td>
+          <td>Get&nbsp;<strong>hour</strong>&nbsp;(0-23)</td>
+        </tr>
+        <tr>
+          <td>getMinutes()</td>
+          <td>Get&nbsp;<strong>minute</strong>&nbsp;(0-59)</td>
+        </tr>
+        <tr>
+          <td>getSeconds()</td>
+          <td>Get&nbsp;<strong>second</strong>&nbsp;(0-59)</td>
+        </tr>
+        <tr>
+          <td>getMilliseconds()</td>
+          <td>Get&nbsp;<strong>millisecond</strong>&nbsp;(0-999)</td>
+        </tr>
+        <tr>
+          <td>getTime()</td>
+          <td>
+            Get&nbsp;<strong>time</strong>&nbsp;(milliseconds since January 1,
+            1970)
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    &nbsp;
+
+    <pre
+      class="language-markup"
+      tabindex="0"
+    ><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>JavaScript<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+    <span class="token keyword">var</span> now <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                
+	<span class="token comment">/* ToDateString Method Example */</span>
+	document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">toDateString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"&lt;br&gt;&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	
+	<span class="token comment">/* GetDate Method */</span>
+	document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">getDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"&lt;br&gt;&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	
+	<span class="token comment">/* GetFullYear Method */</span>
+	document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">getFullYear</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"&lt;br&gt;&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token comment">/* GetMonth Method */</span>
+	document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">getMonth</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"&lt;br&gt;&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token comment">/* GetDay Method */</span>
+	document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">getDay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"&lt;br&gt;&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token comment">/* GetHours Method */</span>
+	document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">getHours</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"&lt;br&gt;&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token comment">/* GetMinutes Method */</span>
+	document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">getMinutes</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"&lt;br&gt;&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token comment">/* GetSeconds Method */</span>
+	document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">getSeconds</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"&lt;br&gt;&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token comment">/* GetMilliseconds Method */</span>
+	document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">getMilliseconds</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"&lt;br&gt;&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	
+	<span class="token comment">/*setDate Method */</span>
+	now<span class="token punctuation">.</span><span class="token function">setDate</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+	<span class="token comment">/*setFullYear Method */</span>
+	now<span class="token punctuation">.</span><span class="token function">setFullYear</span><span class="token punctuation">(</span><span class="token number">2020</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token comment">/*setFullYear Method */</span>
+	now<span class="token punctuation">.</span><span class="token function">setMonth</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token comment">/*setHours Method */</span>
+	now<span class="token punctuation">.</span><span class="token function">setHours</span><span class="token punctuation">(</span><span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	
+	document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">getDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"/"</span> <span class="token operator">+</span> now<span class="token punctuation">.</span><span class="token function">getMonth</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"/"</span> <span class="token operator">+</span> now<span class="token punctuation">.</span><span class="token function">getFullYear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></code></pre>
+
+    <hr />
+  </body>
+  <script>
+    let now = new Date();
+    document.write(now.toDateString() + "<br>");
+    document.write(now.getDate() + "<br>");
+    document.write(now.getFullYear() + "<br>");
+    document.write(now.getMonth() + "<br>");
+    document.write(now.getDay() + "<br>");
+    document.write(now.getHours() + "<br>");
+    document.write(now.getMinutes() + "<br>");
+    document.write(now.getSeconds() + "<br>");
+    document.write(now.getMilliseconds() + "<br>");
+    now.setDate(25);
+    document.write(now + "<br>");
+    now.setFullYear(2030);
+    document.write(now + "<br>");
+    now.setMonth(4);
+    document.write(now + "<br>");
+    document.write(
+      now.getDate() + "/" + now.getMonth() + "/" + now.getFullYear()
+    );
+  </script>
+</html>
