@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS DOM Introduction</title>
+    <style>
+      * {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 50%;
+      }
+
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+
+      code[class*="language-"],
+      pre[class*="language-"] {
+        color: black;
+        background: none;
+        background-color: rgba(0, 0, 0, 0);
+        font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+        font-size: 1em;
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        word-wrap: normal;
+        line-height: 1.5;
+        -moz-tab-size: 4;
+        -o-tab-size: 4;
+        tab-size: 4;
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+      }
+
+      :not(pre) > code[class*="language-"]::after,
+      pre[class*="language-"]::after {
+        right: 0.75em;
+
+        left: auto;
+
+        -webkit-transform: rotate(2deg);
+
+        -moz-transform: rotate(2deg);
+
+        -ms-transform: rotate(2deg);
+
+        -o-transform: rotate(2deg);
+
+        transform: rotate(2deg);
+      }
+      pre[class*="language-"]::before,
+      pre[class*="language-"]::after {
+        content: "";
+
+        z-index: -2;
+
+        display: block;
+
+        position: absolute;
+
+        bottom: 0.75em;
+
+        left: 0.18em;
+
+        width: 40%;
+
+        height: 20%;
+
+        max-height: 13em;
+
+        -webkit-transform: rotate(-2deg);
+
+        -moz-transform: rotate(-2deg);
+
+        -ms-transform: rotate(-2deg);
+
+        -o-transform: rotate(-2deg);
+
+        transform: rotate(-2deg);
+      }
+
+      :not(pre) > code[class*="language-"],
+      pre[class*="language-"] {
+        background-color: #fdfdfd;
+
+        -webkit-box-sizing: border-box;
+
+        -moz-box-sizing: border-box;
+
+        box-sizing: border-box;
+
+        margin-bottom: 1em;
+      }
+      pre[class*="language-"] {
+        position: relative;
+
+        margin: 0.5em 0;
+
+        margin-bottom: 0.5em;
+
+        overflow: visible;
+
+        padding: 0;
+      }
+      code[class*="language-"],
+      pre[class*="language-"] {
+        color: black;
+
+        background: none;
+
+        background-color: rgba(0, 0, 0, 0);
+
+        font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+
+        font-size: 1em;
+
+        text-align: left;
+
+        white-space: pre;
+
+        word-spacing: normal;
+
+        word-break: normal;
+
+        word-wrap: normal;
+
+        line-height: 1.5;
+
+        -moz-tab-size: 4;
+
+        -o-tab-size: 4;
+
+        tab-size: 4;
+
+        -webkit-hyphens: none;
+
+        -moz-hyphens: none;
+
+        -ms-hyphens: none;
+
+        hyphens: none;
+      }
+      pre {
+        display: block;
+
+        font-size: 87.5%;
+
+        color: #212529;
+      }
+      pre {
+        margin-top: 0;
+
+        margin-bottom: 1rem;
+
+        overflow: auto;
+
+        -ms-overflow-style: scrollbar;
+      }
+      code,
+      kbd,
+      pre,
+      samp {
+        font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+          "Courier New", monospace;
+
+        font-size: 1em;
+      }
+
+      pre[class*="language-"] > code {
+        position: relative;
+        border-left: 10px solid #358ccb;
+        box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
+        background-color: #fdfdfd;
+        background-image: linear-gradient(
+          transparent 50%,
+          rgba(69, 142, 209, 0.04) 50%
+        );
+        background-size: 3em 3em;
+        background-origin: content-box;
+        background-attachment: local;
+      }
+
+      code[class*="language"] {
+        max-height: inherit;
+        height: inherit;
+        padding: 0 1em;
+        display: block;
+        overflow: auto;
+      }
+
+      code[class*="language-"],
+      pre[class*="language-"] {
+        color: black;
+        background: none;
+        background-color: rgba(0, 0, 0, 0);
+        background-attachment: scroll;
+        background-image: none;
+        background-size: auto;
+        background-origin: padding-box;
+        font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+        font-size: 1em;
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        word-wrap: normal;
+        line-height: 1.5;
+        -moz-tab-size: 4;
+        -o-tab-size: 4;
+        tab-size: 4;
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+      }
+
+      pre code {
+        font-size: inherit;
+        color: inherit;
+        word-break: normal;
+      }
+
+      code {
+        font-size: 87.5%;
+        color: #e83e8c;
+        word-wrap: break-word;
+      }
+      code,
+      kbd,
+      pre,
+      samp {
+        font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+          "Courier New", monospace;
+        font-size: 1em;
+      }
+      *,
+      ::after,
+      ::before {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <hr />
+    <h3>The HTML DOM (Document Object Model)</h3>
+
+    <p>
+      When a web page is loaded, the browser creates
+      a&nbsp;<strong>D</strong>ocument&nbsp;<strong>O</strong>bject&nbsp;<strong>M</strong>odel
+      of the page.
+    </p>
+
+    <p>
+      The&nbsp;<strong>HTML DOM</strong>&nbsp;model is constructed as a tree
+      of&nbsp;<strong>Objects</strong>:<br />
+      <br />
+      With the object model, JavaScript gets all the power it needs to create
+      dynamic HTML:
+    </p>
+
+    <ul>
+      <li>JavaScript can change all the HTML elements in the page</li>
+      <li>JavaScript can change all the HTML attributes in the page</li>
+      <li>JavaScript can change all the CSS styles in the page</li>
+      <li>JavaScript can remove existing HTML elements and attributes</li>
+      <li>JavaScript can add new HTML elements and attributes</li>
+      <li>JavaScript can react to all existing HTML events in the page</li>
+      <li>JavaScript can create new HTML events in the page</li>
+    </ul>
+
+    <h3>What is the DOM?</h3>
+
+    <p>The DOM is a W3C (World Wide Web Consortium) standard.</p>
+
+    <p>The DOM defines a standard for accessing documents:</p>
+
+    <p>
+      <em
+        >"The W3C Document Object Model (DOM) is a platform and language-neutral
+        interface that allows programs and scripts to dynamically access and
+        update the content, structure, and style of a document."</em
+      >
+    </p>
+
+    <p>The W3C DOM standard is separated into 3 different parts:</p>
+
+    <ul>
+      <li>Core DOM - standard model for all document types</li>
+      <li>XML DOM - standard model for XML documents</li>
+      <li>HTML DOM - standard model for HTML documents</li>
+    </ul>
+
+    <h3>What is the HTML DOM?</h3>
+
+    <p>
+      The HTML DOM is a standard&nbsp;<strong>object</strong>&nbsp;model
+      and&nbsp;<strong>programming interface</strong>&nbsp;for HTML. It defines:
+    </p>
+
+    <ul>
+      <li>
+        <p>The HTML elements as&nbsp;<strong>objects</strong></p>
+      </li>
+      <li>
+        <p>The&nbsp;<strong>properties</strong>&nbsp;of all HTML elements</p>
+      </li>
+      <li>
+        <p>
+          The&nbsp;<strong>methods</strong>&nbsp;to access all HTML elements
+        </p>
+      </li>
+      <li>
+        <p>The&nbsp;<strong>events</strong>&nbsp;for all HTML elements</p>
+      </li>
+    </ul>
+    <hr />
+  </body>
+</html>
