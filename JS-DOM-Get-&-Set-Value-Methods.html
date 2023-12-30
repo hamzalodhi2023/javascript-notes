@@ -652,7 +652,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
           <li><a href="">Contact Us</a></li>
         </ul>
       </div>
-      <div id="content">
+      <div id="content" class="abc" style="border: 1px solid red" onclick="abv">
         <h2>Sub Heading</h2>
         <img
           src="images/flower.jpg"
@@ -693,12 +693,11 @@ console<span class="token punctuation">.</span><span class="token function">log<
           <li><a href="">Contact Us</a></li>
         </ul>
       </div>
-      <div id="footer">hamzakhanlodhi@copyright 2023.</div>
+      <div id="footer">hamzakhanlodhi @copyright 2023.</div>
     </div>
   </body>
   <script>
     let element;
-    element = document.getElementById("content").innerText;
-    console.log(element);
+    element = document.getElementById("footer").innerText = "DOM";
   </script>
 </html>
