@@ -693,11 +693,17 @@ console<span class="token punctuation">.</span><span class="token function">log<
           <li><a href="">Contact Us</a></li>
         </ul>
       </div>
-      <div id="footer">hamzakhanlodhi @copyright 2023.</div>
+      <div id="footer" style="">hamzakhanlodhi @copyright 2023.</div>
     </div>
   </body>
   <script>
     let element;
-    element = document.getElementById("footer").innerText = "DOM";
+    element = document.getElementById("header").innerHTML;
+    console.log(element);
+    element = document.getElementById("header").innerHTML = "<h1>DOM</h1>";
+    element = document.getElementById("footer").innerHTML = "<p>DOM</p>";
+    element = document.getElementById("footer").attributes[1].value =
+      "border: 5px dotted red;";
+    console.log(element);
   </script>
 </html>
